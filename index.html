@@ -4,106 +4,219 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LearnPal — Prototype Demos</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --fg: #1a1a1a;
-    --muted: #555;
-    --bg: #fafaf7;
-    --panel: #ffffff;
-    --border: #e5e5e0;
-    --accent: #c8a420;
+    --primary: #0336FF;
+    --accent:  #FF0266;
+    --secondary: #FBCA4A;
+    --fg: #121A3E;
+    --fg-2: #272F56;
+    --body: #444656;
+    --muted: #6B7185;
+    --bg: #EDF2FA;
+    --card: #FFFFFF;
+    --border: #DCE3EE;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+  html, body { margin: 0; padding: 0; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--body);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
     line-height: 1.6;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px;
+    padding: 40px 24px;
+    -webkit-font-smoothing: antialiased;
   }
-  main { max-width: 880px; width: 100%; }
-  header { text-align: center; margin-bottom: 48px; }
-  h1 {
-    font-size: 2.4rem;
+  main { max-width: 920px; width: 100%; }
+
+  /* Header */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+  }
+
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .wordmark-bulb { width: 44px; height: 44px; flex-shrink: 0; }
+  .wordmark-text {
+    font-family: 'Ubuntu', 'Inter', sans-serif;
     font-weight: 700;
-    margin: 0 0 12px;
-    letter-spacing: -0.02em;
+    font-size: 2.6rem;
+    letter-spacing: -0.01em;
+    line-height: 1;
   }
-  h1 .gold { color: var(--accent); }
-  .tagline { font-size: 1.05rem; color: var(--muted); margin: 0; }
+  .wordmark-text .learn { color: var(--accent); }
+  .wordmark-text .pal { color: var(--primary); }
+
+  h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--fg);
+    letter-spacing: -0.02em;
+    line-height: 1.18;
+    margin: 0 0 14px;
+    max-width: 720px;
+  }
+  h1 .highlight-blue { color: var(--primary); }
+  h1 .highlight-magenta { color: var(--accent); }
+
+  .lead {
+    font-size: 1rem;
+    color: var(--body);
+    margin: 0 0 40px;
+    max-width: 640px;
+  }
+
+  /* Cards */
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
   }
   a.card {
-    display: block;
-    background: var(--panel);
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px 22px;
+    border-radius: 8px;
+    padding: 24px 22px 20px;
     text-decoration: none;
-    color: var(--fg);
-    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    color: var(--body);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+    position: relative;
   }
   a.card:hover {
-    transform: translateY(-3px);
-    border-color: var(--accent);
-    box-shadow: 0 6px 18px rgba(200, 164, 32, 0.12);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+  }
+  .card-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card-eyebrow .dash {
+    display: inline-block;
+    width: 16px;
+    height: 1px;
+    background: var(--muted);
   }
   .card h2 {
-    font-size: 1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.18rem;
+    font-weight: 700;
+    color: var(--fg);
     margin: 0 0 8px;
-    color: var(--accent);
-    font-weight: 600;
+    letter-spacing: -0.01em;
   }
   .card p {
-    font-size: 0.94rem;
-    color: var(--muted);
-    margin: 0 0 14px;
+    font-size: 0.92rem;
+    color: var(--body);
+    margin: 0 0 18px;
+    flex-grow: 1;
   }
-  .card .open {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--fg);
-    letter-spacing: 0.01em;
+  .card .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--primary);
+    letter-spacing: 0.005em;
   }
-  .card .open::after { content: " →"; color: var(--accent); }
+  .card .cta::after {
+    content: "→";
+    font-size: 1em;
+    transition: transform 0.15s ease;
+  }
+  a.card:hover .cta::after { transform: translateX(3px); }
+
+  /* Footer note */
   .note {
-    margin-top: 36px;
-    text-align: center;
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-top: 28px;
+  }
+
+  @media (max-width: 540px) {
+    .wordmark-text { font-size: 2rem; }
+    h1 { font-size: 1.6rem; }
   }
 </style>
 </head>
 <body>
 <main>
-  <header>
-    <h1>Learn<span class="gold">Pal</span> — Prototype Demos</h1>
-    <p class="tagline">Three paradigms of in-video AI support, side by side.</p>
-  </header>
+  <div class="eyebrow">Case study · prototype demos</div>
+
+  <div class="wordmark">
+    <img class="wordmark-bulb" src="brand-icon.svg" alt="">
+    <div class="wordmark-text">
+      <span class="learn">Learn</span><span class="pal">Pal</span>
+    </div>
+  </div>
+
+  <h1>Three paradigms of in-video AI <span class="highlight-magenta">support</span>, side by <span class="highlight-blue">side</span>.</h1>
+  <p class="lead">Same video, same AI, three different design decisions about <em>when</em> the AI speaks. Click into any prototype to try it as a learner would.</p>
+
   <div class="cards">
     <a class="card" href="https://learnpal-intermittent.onrender.com" target="_blank" rel="noreferrer">
-      <h2>Intermittent</h2>
-      <p>Learner-initiated. The AI is silent until you call on it — through chat or by snapping a region of the video.</p>
-      <div class="open">Open prototype</div>
+      <div class="card-eyebrow"><span class="dash"></span>01 · Intermittent</div>
+      <h2>Learner-initiated.</h2>
+      <p>The AI is silent until you call on it — through chat, or by snapping a region of the video to ask about.</p>
+      <div class="cta">Open prototype</div>
     </a>
     <a class="card" href="https://learnpal-continuous.onrender.com" target="_blank" rel="noreferrer">
-      <h2>Continuous</h2>
-      <p>Continuously available. Glossary, highlights, and questions accumulate ambiently in side panels as the video plays.</p>
-      <div class="open">Open prototype</div>
+      <div class="card-eyebrow"><span class="dash"></span>02 · Continuous</div>
+      <h2>Continuously available.</h2>
+      <p>Glossary, highlights, and questions accumulate ambiently in side panels as the video plays. You sample what you want.</p>
+      <div class="cta">Open prototype</div>
     </a>
     <a class="card" href="https://learnpal-proactive.onrender.com" target="_blank" rel="noreferrer">
-      <h2>Proactive</h2>
-      <p>System-initiated. Keyword popups, on-frame overlays, and pop quizzes interrupt at chosen learning moments.</p>
-      <div class="open">Open prototype</div>
+      <div class="card-eyebrow"><span class="dash"></span>03 · Proactive</div>
+      <h2>System-initiated.</h2>
+      <p>Keyword popups, on-frame overlays, and pop quizzes interrupt at chosen learning moments. You can override; the system pushes.</p>
+      <div class="cta">Open prototype</div>
     </a>
   </div>
-  <p class="note">First load of each prototype may take ~30 seconds (free-tier hosting). Subsequent loads are instant.</p>
+
+  <p class="note">First load of each prototype may take ~30 seconds — services are on free-tier hosting and spin down after periods of inactivity. Subsequent navigation is instant.</p>
 </main>
 </body>
 </html>
