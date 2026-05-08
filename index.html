@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LearnPal — Prototype Demos</title>
+<style>
+  :root {
+    --fg: #1a1a1a;
+    --muted: #555;
+    --bg: #fafaf7;
+    --panel: #ffffff;
+    --border: #e5e5e0;
+    --accent: #c8a420;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  main { max-width: 880px; width: 100%; }
+  header { text-align: center; margin-bottom: 48px; }
+  h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 0 0 12px;
+    letter-spacing: -0.02em;
+  }
+  h1 .gold { color: var(--accent); }
+  .tagline { font-size: 1.05rem; color: var(--muted); margin: 0; }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  a.card {
+    display: block;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 22px;
+    text-decoration: none;
+    color: var(--fg);
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  a.card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 6px 18px rgba(200, 164, 32, 0.12);
+  }
+  .card h2 {
+    font-size: 1.2rem;
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .card p {
+    font-size: 0.94rem;
+    color: var(--muted);
+    margin: 0 0 14px;
+  }
+  .card .open {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--fg);
+    letter-spacing: 0.01em;
+  }
+  .card .open::after { content: " →"; color: var(--accent); }
+  .note {
+    margin-top: 36px;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Learn<span class="gold">Pal</span> — Prototype Demos</h1>
+    <p class="tagline">Three paradigms of in-video AI support, side by side.</p>
+  </header>
+  <div class="cards">
+    <a class="card" href="https://learnpal-intermittent.onrender.com" target="_blank" rel="noreferrer">
+      <h2>Intermittent</h2>
+      <p>Learner-initiated. The AI is silent until you call on it — through chat or by snapping a region of the video.</p>
+      <div class="open">Open prototype</div>
+    </a>
+    <a class="card" href="https://learnpal-continuous.onrender.com" target="_blank" rel="noreferrer">
+      <h2>Continuous</h2>
+      <p>Continuously available. Glossary, highlights, and questions accumulate ambiently in side panels as the video plays.</p>
+      <div class="open">Open prototype</div>
+    </a>
+    <a class="card" href="https://learnpal-proactive.onrender.com" target="_blank" rel="noreferrer">
+      <h2>Proactive</h2>
+      <p>System-initiated. Keyword popups, on-frame overlays, and pop quizzes interrupt at chosen learning moments.</p>
+      <div class="open">Open prototype</div>
+    </a>
+  </div>
+  <p class="note">First load of each prototype may take ~30 seconds (free-tier hosting). Subsequent loads are instant.</p>
+</main>
+</body>
+</html>
