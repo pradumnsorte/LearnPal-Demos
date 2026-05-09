@@ -170,6 +170,47 @@
   }
   a.card:hover .cta::after { transform: translateX(3px); }
 
+  /* Rationale link */
+  a.rationale {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 22px;
+    text-decoration: none;
+    color: var(--body);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  a.rationale:hover {
+    border-color: var(--primary);
+    transform: translateY(-1px);
+  }
+  .rationale-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--fg);
+    white-space: nowrap;
+  }
+  .rationale-detail {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .rationale-arrow {
+    color: var(--primary);
+    font-weight: 600;
+    transition: transform 0.15s ease;
+  }
+  a.rationale:hover .rationale-arrow { transform: translateX(3px); }
+  @media (max-width: 640px) {
+    a.rationale {
+      grid-template-columns: 1fr auto;
+    }
+    .rationale-detail { grid-column: 1 / -1; }
+  }
+
   /* Footer note */
   .note {
     font-size: 0.78rem;
@@ -218,6 +259,12 @@
       <div class="cta">Open prototype</div>
     </a>
   </div>
+
+  <a class="rationale" href="prototype-development.html">
+    <span class="rationale-label">Read the design rationale</span>
+    <span class="rationale-detail">A walkthrough of the shared foundation, each prototype's design choices, and the trade-offs behind the comparison.</span>
+    <span class="rationale-arrow">→</span>
+  </a>
 
   <p class="note">First load of each prototype may take ~30 seconds — services are on free-tier hosting and spin down after periods of inactivity. Subsequent navigation is instant.</p>
 </main>
